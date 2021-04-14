@@ -1,10 +1,11 @@
-version: 2.1
-orbs:
+description: |
+  Checkout Code test cases from Git, run test cases and publish report
+usage:
+ version: 2.1
+ orbs:
   provar: 'provartesting/provar@dev:alpha'
-jobs:
+ jobs:
   build:
-    description: |
-      Checkout Code test cases from Git, run test cases and publish report
     executor:
       name: provar/default
       tag: 8-jdk-stretch-node-browsers
