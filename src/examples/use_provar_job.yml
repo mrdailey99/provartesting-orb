@@ -1,7 +1,10 @@
-version: 2.1
-orbs:
+description: |
+   Running provar testing using job
+usage:
+ version: 2.1
+ orbs:
   provar: 'provartesting/provar@dev:alpha'
-workflows:
+ workflows:
   version: 2.1
   run_all:
     jobs:
