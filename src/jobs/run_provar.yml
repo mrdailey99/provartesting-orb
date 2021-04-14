@@ -1,0 +1,35 @@
+description: >
+  Checkout Code from Git having test cases, execute test cases using ANT and
+  publish report
+parameters:
+  steps:
+    type: steps
+    description: Steps to execute
+    default: []
+  majorversion:
+    type: string
+    default: 2.3.1
+    description: Major version of provar
+  minorversion:
+    type: string
+    default: '05'
+    description: Minor version of provar
+  url:
+    type: string
+    default: download.provartesting.com
+    description: >
+      URL, minus https://, from which to download the specified version of
+      provar Ant
+  executor:
+    type: executor
+    default: default
+    description: |
+      Executor to use for this job, defaults to this orb's default executor
+executor: <<parameters.executor>>
+steps:
+  - checkout
+  - setup_provar:
+      majorversion: << parameters.majorversion >>
+      minorversion: << parameters.minorversion >>
+      url: << parameters.url >>
+  - steps: << parameters.steps >>

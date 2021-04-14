@@ -1,11 +1,19 @@
-description: >
-  This is a sample executor using Docker and Node.
-docker:
-  - image: 'cimg/node:<<parameters.tag>>'
+description: >-
+  Docker image having Java version 8, ant latest version and browsers like
+  Firefox, Chrome, Explorer
 parameters:
   tag:
-    default: lts
-    description: >
-      Pick a specific circleci/node image variant:
-      https://hub.docker.com/r/cimg/node/tags
     type: string
+    default: 8-jdk-browsers
+    description: >
+      Specific variant of CircleCI's OpenJDK image to use:
+      https://hub.docker.com/r/circleci/openjdk/tags
+  working-directory:
+    type: string
+    default: ~/project
+    description: >
+      Working directory for the job using this executor:
+      https://circleci.com/docs/2.0/configuration-reference/#job_name
+docker:
+  - image: 'circleci/openjdk:<< parameters.tag >>'
+working_directory: <<parameters.working-directory>>

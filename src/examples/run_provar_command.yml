@@ -1,0 +1,23 @@
+version: 2.1
+orbs:
+  provar: 'provartesting/provar@dev:alpha'
+jobs:
+  build:
+    description: |
+      Checkout Code test cases from Git, run test cases and publish report
+    executor:
+      name: provar/default
+      tag: 8-jdk-stretch-node-browsers
+    parameters:
+      project_name:
+        type: string
+        default: DemoProject
+      build_file:
+        type: string
+        default: build.xml
+    steps:
+      - checkout
+      - provar/setup_provar
+      - run: >-
+          ant -Dprovar.home="/home/circleci/project/Provar_Home" -f <<
+          parameters.project_name >>/<< parameters.build_file >>

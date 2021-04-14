@@ -1,0 +1,29 @@
+description: Downloads and extracts provar Ant zip file
+parameters:
+  majorversion:
+    type: string
+    default: 2.3.1
+    description: Major version of provar
+  minorversion:
+    type: string
+    default: '05'
+    description: Minor version of provar
+  url:
+    type: string
+    default: download.provartesting.com
+    description: >
+      URL, minus https://, from which to download the specified version of
+      provar Ant
+steps:
+  - run:
+      name: Download Provar_ANT.zip file and extract it into Provar_Home directory
+      command: >
+        curl -O https://<< parameters.url >>/<< parameters.majorversion
+        >>/Provar_ANT_<< parameters.majorversion >>.<< parameters.minorversion
+        >>.zip
+
+        unzip Provar_ANT_<< parameters.majorversion >>.<<
+        parameters.minorversion >>.zip -d Provar_Home
+
+        rm Provar_ANT_<< parameters.majorversion >>.<< parameters.minorversion
+        >>.zip
